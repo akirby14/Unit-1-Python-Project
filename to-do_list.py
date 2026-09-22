@@ -2,7 +2,10 @@ def ask_command():
     command = input("Enter a command: ")
     if command == "/help":
         help_command(command)
-    
+    elif command == "/add":
+            add_command()
+    elif command == "/remove":
+            remove_command()
 
 def help_command(command_input):
     print("Available commands:")
@@ -11,3 +14,22 @@ def help_command(command_input):
     print("/view - View all tasks in the list")
     print("/end program - Exit the program")
     ask_command()
+
+def add_command():
+    task = input("Enter the task you want to add: ")
+    to_do_list.append(task)
+    print(f'Task "{task}" has been added to your To-Do List.')
+    ask_command()
+
+def remove_command():
+    task = input("Enter the task you want to remove: ")
+    if task in to_do_list:
+        to_do_list.remove(task)
+        print(f'Task "{task}" has been removed from your To-Do List.')
+    else:
+        print(f'Task "{task}" not found in your To-Do List.')
+    ask_command()
+
+to_do_list = []
+print("Welcome to your To-Do List! \nUse the command /help to see the list of available commands.")
+ask_command()
