@@ -6,6 +6,13 @@ def ask_command():
             add_command()
     elif command == "/remove":
             remove_command()
+    elif command == "/view":
+            view_command()
+    elif command == "/end program":
+            print("Ending program...")
+    else:
+        print("Invalid command. Please try again.")
+        ask_command()
 
 def help_command(command_input):
     print("Available commands:")
@@ -28,6 +35,15 @@ def remove_command():
         print(f'Task "{task}" has been removed from your To-Do List.')
     else:
         print(f'Task "{task}" not found in your To-Do List.')
+    ask_command()
+
+def view_command():
+    if to_do_list:
+        print("Your To-Do List:")
+        for index, task in enumerate(to_do_list, start=1):
+            print(f"{index}. {task}")
+    else:
+        print("Your To-Do List is empty.")
     ask_command()
 
 to_do_list = []
