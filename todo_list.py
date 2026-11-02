@@ -1,9 +1,11 @@
 import json
 
+
 class ToDoList:
 
-    def __init__(self):
+    def __init__(self, filename="tasks.json"):
         self.tasks = []
+        self.filename = filename
         self.load_tasks()
 
     def add_task(self, task):
@@ -28,12 +30,12 @@ class ToDoList:
             print("Your To-Do List is empty.")
 
     def save_tasks(self):
-        with open("tasks.json", "w") as file:
+        with open(self.filename, "w") as file:
             json.dump(self.tasks, file, indent=4)
 
     def load_tasks(self):
         try:
-            with open("tasks.json", "r") as file:
+            with open(self.filename, "r") as file:
                 self.tasks = json.load(file)
         except FileNotFoundError:
             self.tasks = []
